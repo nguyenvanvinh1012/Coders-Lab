@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin_layout}"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating coding question</title>
+    <link rel="stylesheet" href="/admin_assets/css/multi-step-form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">-->
+    <!--summernote-->
+    <link th:href="@{/admin_assets/vendor/summernote/summernote-bs4.css}" rel="stylesheet">
+    <style>
+        .modal-backdrop {
+            position: unset !important;
+        }
+        .modal {
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .has-error, .help-block {
+            color: #a94442;
+            font-weight: 600;
+        }
+        .has-error{
+            border: 1px solid #a94442 !important;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <p style="font-size: 23px; font-weight: bold" class="mb-sm-0 font-size-18">Creating Coding Question Kit</p>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a th:href="@{/templates/admin/assignment}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Creating coding question kit</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+        <div class="col-12">
+            <div style="background-color: #fff" class="card2">
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <form id="msform" th:action="@{/admin/assignment-kit/add}" th:object="${assignment_kit}" method="post">
+                            <fieldset>
+                                <div class="form-card">
+                                    <p style="font-weight: 600; color:#2f3c4b;; margin-bottom: 30px" >Lưu ý<span class="text-danger">*</span>: hệ thống sẽ lấy ngẫu nhiên câu hỏi trong ngân hàng câu hỏi dựa trên số lượng câu hỏi và độ khó bạn đưa ra</p>
+                                    <p style="font-weight: 600; color:#2f3c4b;; margin-bottom: 2px" >Certificate name: <span class="text-danger">*</span></p>
+                                    <div style="margin-bottom: 25px">
+                                        <input required th:field="*{title}" class="form-validate" name="title" id="title" style="font-family: 'Montserrat'; margin-bottom: unset" type="text" placeholder="Tên chứng chỉ này"/>
+                                    </div>
+                                    <p style="font-weight: 600; color:#2f3c4b;; margin-bottom: 2px" >Time/mins: <span class="text-danger">*</span></p>
+                                    <div style="margin-bottom: 25px">
+                                        <input required class="form-validate" name="test_time" id="test_time" th:field="*{time}" style="font-family: 'Montserrat'; margin-bottom: unset" type="number" min="1" placeholder="Thời gian làm bài (phút)"/>
+                                    </div>
+                                    <div style="margin-bottom: 25px" class="row">
+                                        <div class="col">
+                                            <p style="font-weight: 600; color:#2f3c4b; margin-bottom: 2px">
+                                                Độ khó</p>
+                                            <select th:field="*{level}" style="height: 45px; cursor: pointer; font-size: 15px"
+                                                    class="form-control select2" name="level">
+                                                <option th:each="level: ${levels}" th:value="${level.id}"
+                                                        th:text="${level.name}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div style="margin-bottom: 25px" class="row">
+                                        <div class="col">
+                                            <p style="font-weight: 600; color:#2f3c4b; margin-bottom: 2px">Language
+                                                <span class="text-danger">(*)</span></p>
+                                            <select th:field="*{language}" style="height: 45px; cursor: pointer; font-size: 15px" id="selectBox"
+                                                    class="form-control select2" name="language-selected">
+                                                <option value="">Problem Solving</option>
+                                                <option th:each="language: ${languages}" th:value="${language.id}"
+                                                        th:text="${language.name}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <p style="font-weight: 600; color:#2f3c4b;; margin-bottom: 2px">Số bài tập:
+                                        <span class="text-danger">*</span></p>
+                                    <div style="margin-bottom: 25px">
+                                        <input th:field="*{numberOfAssignment}" required class="form-validate" min="1" name="no_assignment" id="no_assignment"
+                                               style="font-family: 'Montserrat'; margin-bottom: unset" type="number"
+                                               placeholder="Nhập số lượng bài tập"/>
+                                    </div>
+
+                                    <p style="font-weight: 600; color:#2f3c4b;; margin-bottom: 2px">Số câu hỏi trắc nghiệm:
+                                        <span class="text-danger">*</span></p>
+                                    <div style="margin-bottom: 25px">
+                                        <input th:field="*{numberOfQuiz}" required class="form-validate" min="1" name="no_quiz" id="no_quiz"
+                                               style="font-family: 'Montserrat'; margin-bottom: unset" type="number"
+                                               placeholder="Nhập số lượng câu hỏi trắc nghiệm"/>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary" style="float: right;margin-top: 20px;">Save</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

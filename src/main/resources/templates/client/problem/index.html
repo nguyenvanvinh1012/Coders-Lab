@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/home_layout}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solve Algorithms | Coder'sLab</title>
+    <style>
+        .redH{
+            color: #f44336 !important;
+        }
+        .current-page {
+            color: #ffffff !important;
+            background: #2b4eff !important;
+            border-color: #2b4eff !important;
+        }
+    </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- page title area start -->
+    <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center" th:attr="data-background=@{/client_assets/img/background.png}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="page__title-wrapper mt-110">
+                        <h3 class="page__title">Giải quyết vấn đề</h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Giải quyết vấn đề</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- page title area end -->
+
+    <!-- course area start -->
+    <section class="course__area pt-120 pb-120">
+        <div class="container">
+            <input id="userID" type="hidden" th:value="${UserID}">
+            <div class="row">
+                <div class="col-xxl-8 col-xl-8 col-lg-8">
+                    <div class="course__tab-conent">
+                        <div class="tab-content" id="courseTabContent">
+                            <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
+                                <div class="row" id="assignments">
+<!--                                    <div th:each="assignment : ${assignments}" class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">-->
+<!--                                        <div class="course__item white-bg mb-30 fix">-->
+<!--                                            <div class="course__thumb w-img p-relative fix">-->
+<!--                                                <a th:href="@{problemSolving/{id}(id=${assignment.id})}">-->
+<!--&lt;!&ndash;                                                    <img th:src="@{/client_assets/img/course/course-1.jpg}" alt="">&ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <div class="course__tag">-->
+<!--                                                    <a class="yellow" href="#">Algorithm</a>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="course__content">-->
+<!--                                                <div class="course__meta d-flex align-items-center justify-content-between">-->
+<!--                                                    <div class="course__lesson">-->
+<!--                                                        <span><i class="far fa-book-alt"></i>Max score: </span>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="course__rating">-->
+<!--                                                        <span>Success Rate:</span>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <h3 style="margin-top: 20px; font-size: 23px !important;" class="course__title"><a th:href="@{problemSolving/{id}(id=${assignment.id})}" th:text="${assignment.title}"></a></h3>-->
+<!--                                                <div class="course__teacher d-flex align-items-center">-->
+<!--                                                    <div class="course__teacher-thumb mr-15">-->
+<!--                                                        <img th:if="${assignment.getLecturer().avatarUrl == null}" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">-->
+<!--                                                        <img th:if="${assignment.getLecturer().avatarUrl != null}" th:src="@{${assignment.getLecturer().getImagesPath()}}" alt="">-->
+<!--                                                    </div>-->
+<!--                                                    <h6><a th:href="@{problemSolving/{id}(id=${assignment.id})}" th:text="${assignment.getLecturer().getFullName()}"></a></h6>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="course__more d-flex justify-content-between align-items-center">-->
+<!--                                                <div th:if="${assignment.level.id != null}" class="course__status">-->
+<!--                                                    <span class="green" th:if="${assignment.level.id == 1}" th:text="${assignment.level.name}"></span>-->
+<!--                                                    <span class="blue" th:if="${assignment.level.id == 2}" th:text="${assignment.level.name}"></span>-->
+<!--                                                    <span class="blue-2" th:if="${assignment.level.id == 3}" th:text="${assignment.level.name}"></span>-->
+
+<!--                                                </div>-->
+<!--                                                <div class="course__btn">-->
+<!--                                                    <a th:href="@{/problemSolving/{id}(id=${assignment.id})}" class="link-btn">-->
+<!--                                                        Solve Challenge-->
+<!--                                                        <i class="far fa-arrow-right"></i>-->
+<!--                                                        <i class="far fa-arrow-right"></i>-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pagination" class="row">
+<!--                            <div class="col-xxl-12">-->
+<!--                                <div class="basic-pagination wow fadeInUp mt-30" data-wow-delay=".2s">-->
+<!--                                    <ul class="d-flex align-items-center">-->
+<!--                                        <li class="prev">-->
+<!--                                            <a th:if="${currentPage > 1}"-->
+<!--                                               th:href="@{'/problemSolving/page/' + ${currentPage - 1}}" class="link-btn link-prev">-->
+<!--                                                Prev-->
+<!--                                                <i class="arrow_left"></i>-->
+<!--                                                <i class="arrow_left"></i>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--&lt;!&ndash;                                        <li class="active">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <a href="course-grid.html">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span>2</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </li>&ndash;&gt;-->
+<!--                                        <li th:each="i: ${#numbers.sequence(1, totalPages)}">-->
+<!--                                            <a th:if="${currentPage != i}"-->
+<!--                                               th:href="@{'/problemSolving/page/' + ${i}}">[[${i}]]</a>-->
+<!--                                            <span th:unless="${currentPage != i}"><a style=" color: #ffffff;background: #2b4eff; border-color: #2b4eff;">[[${i}]]</a></span>-->
+<!--                                        </li>-->
+<!--                                        <li class="next">-->
+<!--                                            <a th:if="${currentPage < totalPages}"-->
+<!--                                               th:href="@{'/problemSolving/page/' + ${currentPage + 1}}" class="link-btn">-->
+<!--                                                Next-->
+<!--                                                <i class="arrow_right"></i>-->
+<!--                                                <i class="arrow_right"></i>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4">
+                    <div class="course__sidebar pl-70">
+                        <div class="course__sidebar-search mb-50">
+                            <div>
+                                <input style="position: relative" type="text" id="keyword" name="keyword" placeholder="Tìm kiếm...">
+                                <a style="position: absolute; cursor: pointer; right: 10px; top: 50%; transform: translateY(-40%)"
+                                   id="click_to_record"><i style="font-size: 22px" class='bx bxs-microphone'></i></a>
+<!--                                <button id="click_to_record">-->
+<!--                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 584.4 584.4" style="enable-background:new 0 0 584.4 584.4;" xml:space="preserve">-->
+<!--                                    <g>-->
+<!--                                       <g>-->
+<!--                                          <path class="st0" d="M565.7,474.9l-61.1-61.1c-3.8-3.8-8.8-5.9-13.9-5.9c-6.3,0-12.1,3-15.9,8.3c-16.3,22.4-36,42.1-58.4,58.4    c-4.8,3.5-7.8,8.8-8.3,14.5c-0.4,5.6,1.7,11.3,5.8,15.4l61.1,61.1c12.1,12.1,28.2,18.8,45.4,18.8c17.1,0,33.3-6.7,45.4-18.8    C590.7,540.6,590.7,499.9,565.7,474.9z"/>-->
+<!--                                           <path class="st1" d="M254.6,509.1c140.4,0,254.5-114.2,254.5-254.5C509.1,114.2,394.9,0,254.6,0C114.2,0,0,114.2,0,254.5    C0,394.9,114.2,509.1,254.6,509.1z M254.6,76.4c98.2,0,178.1,79.9,178.1,178.1s-79.9,178.1-178.1,178.1S76.4,352.8,76.4,254.5    S156.3,76.4,254.6,76.4z"/>-->
+<!--                                       </g>-->
+<!--                                    </g>-->
+<!--                                 </svg>-->
+<!--                                </button>-->
+                            </div>
+                        </div>
+                        <div class="course__sidebar-widget grey-bg">
+                            <div class="course__sidebar-info">
+                                <h3 class="course__sidebar-title">STATUS</h3>
+                                <ul>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="solved">
+                                            <label class="m-check-label" for="solved">Solved (Đã giải)</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="unsolved">
+                                            <label class="m-check-label" for="unsolved">Unsolved (Chưa giải)</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="course__sidebar-widget grey-bg">
+                            <div class="course__sidebar-info">
+                                <h3 class="course__sidebar-title">DIFFICULTY</h3>
+                                <ul>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="easy">
+                                            <label class="m-check-label" for="easy">Easy (Dễ)</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="medium">
+                                            <label class="m-check-label" for="medium">Medium (Vừa)</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="hard">
+                                            <label class="m-check-label" for="hard">Hard (Khó)</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="course__sidebar-widget grey-bg">
+                            <div class="course__sidebar-info">
+                                <h3 class="course__sidebar-title">Hashtag</h3>
+                                <ul>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="sort">
+                                            <label class="m-check-label" for="sort">Sort</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="search">
+                                            <label class="m-check-label" for="search">Search</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="recursion">
+                                            <label class="m-check-label" for="recursion">Recursion</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                            <input class="m-check-input" type="checkbox" id="graph">
+                                            <label class="m-check-label" for="graph">Graph Theory</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+    <script th:src="@{/client_assets/js/problemSolving.js}"></script>
+    <script th:inline="javascript">
+        $(document).ready(function (){
+            function fetchAssignment(startPage) {
+                $.ajax({
+                    type : "GET",
+                    url : "/api/problemSolving",
+                    data: {
+                        page: startPage,
+                        size: 8
+                    },
+                    success: function(response){
+                        $('#assignments').empty();
+                        // add table rows
+                        $.each(response.content, (i, assignment) => {
+                          assignmentContent(assignment);
+                        });
+                        // Update pagination
+                        $('#pagination').empty()
+                        buildPagination(response)
+                    },
+                    error : function(e) {
+                        alert("ERROR: ", e);
+                    }
+                });
+            }
+            fetchAssignment(0);
+            $(document).on('click', '#pagination #page-fetch a', function () {
+                let page = $(this).data('page');
+                if (page !== undefined) {
+                    // alert(page)
+                    fetchAssignment(page);
+                }
+            });
+            //search
+            $("#keyword").keyup(function (){
+                var searchText = $("#keyword").val();
+                function showAssignments(startPage) {
+                    $.ajax({
+                        url:'/api/problemSolving/search',
+                        type: 'GET',
+                        data: {
+                            page: startPage,
+                            size: 8,
+                            searchText: searchText
+                        },
+                        success: function (response){
+                            // alert(response.content);
+                            $('#assignments').empty();
+                            // add table rows
+                            $.each(response.content, (i, assignment) => {
+                                assignmentContent(assignment)
+                            });
+                            // Update pagination
+                            $('#pagination').empty();
+                            buildPaginationForSearch(response);
+                        },
+                        error: function (){
+                            console.log("error");
+                        }
+                    });
+                }
+                showAssignments(0);
+                $(document).on('click', '#pagination #page-searchh a', function () {
+                    let page = $(this).data('page');
+                    if (page !== undefined) {
+                       showAssignments(page);
+                    }
+                });
+            });
+            //filter
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    filterData();
+                });
+            });
+            function filterData(startPage){
+                const easyChecked = document.getElementById('easy').checked;
+                const mediumChecked = document.getElementById('medium').checked;
+                const hardChecked = document.getElementById('hard').checked;
+                const solved = document.getElementById('solved').checked;
+                const unsolved = document.getElementById('unsolved').checked;
+                const userID = document.getElementById('userID').value;
+                // const sort = document.getElementById('sort').checked;
+                // const search = document.getElementById('search').checked;
+                // const recursion = document.getElementById('recursion').checked;
+                // const graph = document.getElementById('graph').checked;
+
+                $.ajax({
+                    url:'/api/problemSolving/filter',
+                    type: 'GET',
+                    data: {
+                        page: startPage,
+                        size: 8,
+                        easyChecked: easyChecked,
+                        mediumChecked: mediumChecked,
+                        hardChecked: hardChecked,
+                        solved : solved,
+                        unsolved: unsolved,
+                        userID: userID,
+                        // sort: sort,
+                        // search: search,
+                        // recursion: recursion,
+                        // graph: graph,
+                    },
+                    success: function (response){
+                        // alert(response.content);
+                        $('#assignments').empty();
+                        if(response.content.length === 0) {
+                            notFoundResult();
+                        }else{
+                            // add table rows
+                            $.each(response.content, (i, assignment) => {
+                                assignmentContent(assignment)
+                            });
+                            // Update pagination
+                            $('#pagination').empty();
+                            buildPaginationForFilter(response)
+                        }
+                    },
+                    error: function (){
+                        console.log("error");
+                    }
+                });
+            }
+            $(document).on('click', '#pagination #page-filter a', function () {
+                let page = $(this).data('page');
+                if (page !== undefined) {
+                    filterData(page);
+                }
+            });
+            //speech to text (search)
+            document.getElementById("click_to_record").addEventListener('click', function () {
+                var speech = true;
+                window.SpeechRecognition = window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                recognition.interimResults = true;
+
+                recognition.lang = 'vi-VN, en-US';
+
+                recognition.addEventListener('result', e => {
+                    const transcript = Array.from(e.results)
+                        .map(result => result[0])
+                        .map(result => result.transcript)
+                        .join('')
+
+                    document.getElementById("keyword").value = transcript;
+                    function showAssignments(startPage) {
+                        $.ajax({
+                            url:'/api/problemSolving/search',
+                            type: 'GET',
+                            data: {
+                                page: startPage,
+                                size: 8,
+                                searchText: transcript.trim()
+                            },
+                            success: function (response){
+                                // alert(response.content);
+                                $('#assignments').empty();
+                                // add table rows
+                                $.each(response.content, (i, assignment) => {
+                                    assignmentContent(assignment)
+                                });
+                                // Update pagination
+                                $('#pagination').empty();
+                                buildPaginationForSearch(response);
+                            },
+                            error: function (){
+                                console.log("error");
+                            }
+                        });
+                    }
+                    showAssignments(0);
+                    // fetchSearchResults(transcript.trim());
+                    console.log(transcript);
+                });
+                if (speech === true) {
+                    recognition.start();
+                }
+            })
+        });
+    </script>
+</div>
+</body>
+</html>

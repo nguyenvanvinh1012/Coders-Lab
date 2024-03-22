@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/home_layout}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Certify | Coder'sLab</title>
+   <style>
+      .redH{
+         color: #f44336 !important;
+      }
+      .current-page {
+         color: #ffffff !important;
+         background: #2b4eff !important;
+         border-color: #2b4eff !important;
+      }
+   </style>
+   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+      <!-- course area start -->
+      <section style="margin-top: 50px" class="course__area pt-120 pb-120">
+         <div class="container">
+            <div class="row">
+               <div class="col-xxl-8 col-xl-8 col-lg-8">
+                  <div class="course__tab-conent">
+                     <div class="tab-content" id="courseTabContent">
+                        <input id="userID" type="hidden" th:value="${UserID}">
+                        <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
+                           <div class="row" id="assignment_kits">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row" id="pagination">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-xl-4 col-lg-4">
+                  <div class="course__sidebar pl-70">
+                     <div class="course__sidebar-search mb-50">
+                        <div>
+                           <input type="text" id="keyword" name="keyword" placeholder="Tìm kiếm chứng chỉ...">
+                           <button type="submit">
+                              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 584.4 584.4" style="enable-background:new 0 0 584.4 584.4;" xml:space="preserve">
+                                    <g>
+                                       <g>
+                                          <path class="st0" d="M565.7,474.9l-61.1-61.1c-3.8-3.8-8.8-5.9-13.9-5.9c-6.3,0-12.1,3-15.9,8.3c-16.3,22.4-36,42.1-58.4,58.4    c-4.8,3.5-7.8,8.8-8.3,14.5c-0.4,5.6,1.7,11.3,5.8,15.4l61.1,61.1c12.1,12.1,28.2,18.8,45.4,18.8c17.1,0,33.3-6.7,45.4-18.8    C590.7,540.6,590.7,499.9,565.7,474.9z"/>
+                                          <path class="st1" d="M254.6,509.1c140.4,0,254.5-114.2,254.5-254.5C509.1,114.2,394.9,0,254.6,0C114.2,0,0,114.2,0,254.5    C0,394.9,114.2,509.1,254.6,509.1z M254.6,76.4c98.2,0,178.1,79.9,178.1,178.1s-79.9,178.1-178.1,178.1S76.4,352.8,76.4,254.5    S156.3,76.4,254.6,76.4z"/>
+                                       </g>
+                                    </g>
+                                 </svg>
+                           </button>
+                        </div>
+                     </div>
+                     <div class="course__sidebar-widget grey-bg">
+                        <div class="course__sidebar-info">
+                           <h3 class="course__sidebar-title">STATUS</h3>
+                           <ul>
+                              <li>
+                                 <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                    <input class="m-check-input" type="checkbox" id="solved">
+                                    <label class="m-check-label" for="solved">Solved (Đã làm)</label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                    <input class="m-check-input" type="checkbox" id="unsolved">
+                                    <label class="m-check-label" for="unsolved">Unsolved (Chưa làm)</label>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="course__sidebar-widget grey-bg">
+                        <div class="course__sidebar-info">
+                           <h3 class="course__sidebar-title">LANGUAGE</h3>
+                           <ul>
+                              <li>
+                                 <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                    <input class="m-check-input" type="checkbox" id="option">
+                                    <label class="m-check-label" for="option">Option Languages</label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                    <input class="m-check-input" type="checkbox" id="java">
+                                    <label class="m-check-label" for="java">Java</label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                    <input class="m-check-input" type="checkbox" id="csharp">
+                                    <label class="m-check-label" for="csharp">C#</label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                    <input class="m-check-input" type="checkbox" id="python">
+                                    <label class="m-check-label" for="python">Python</label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="course__sidebar-check mb-10 d-flex align-items-center">
+                                    <input class="m-check-input" type="checkbox" id="cplus">
+                                    <label class="m-check-label" for="cplus">C++</label>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+   <script th:src="@{/client_assets/js/problemSolving.js}"></script>
+   <script th:src="@{/client_assets/js/certify.js}"></script>
+   <script th:inline="javascript">
+      $(document).ready(function (){
+         function fetchCertify(startPage) {
+            $.ajax({
+               type : "GET",
+               url : "/api/certify",
+               data: {
+                  page: startPage,
+                  size: 6
+               },
+               success: function(response){
+                  $('#assignment_kits').empty();
+                  if(response.content.length === 0){
+                     notFoundResultCertify();
+                  }else {
+                     // add table rows
+                     $.each(response.content, (i, assignment_kit) => {
+                        certifyContent((assignment_kit));
+                     });
+
+                     // Update pagination
+                     $('#pagination').empty()
+                     buildPagination(response)
+                  }
+               },
+               error : function(e) {
+                  alert(e);
+               }
+            });
+         }
+         fetchCertify(0);
+         $(document).on('click', '#pagination #page-fetch a', function () {
+            let page = $(this).data('page');
+            if (page !== undefined) {
+               fetchCertify(page);
+            }
+         });
+         //search
+         $("#keyword").keyup(function (){
+            var searchText = $("#keyword").val();
+            function showCertify(startPage) {
+               $.ajax({
+                  url:'/api/certify/search',
+                  type: 'GET',
+                  data: {
+                     page: startPage,
+                     size: 6,
+                     searchText: searchText
+                  },
+                  success: function (response){
+                     // alert(response.content);
+                     $('#assignment_kits').empty();
+                     // add table rows
+                     if(response.content.length === 0){
+                        notFoundResultCertify();
+                     }else {
+                        $.each(response.content, (i, assignment_kit) => {
+                           certifyContent(assignment_kit);
+                        });
+                        // Update pagination
+                        $('#pagination').empty();
+                        buildPaginationForSearch(response);
+                     }
+                  },
+                  error: function (){
+                     console.log("error");
+                  }
+               });
+            }
+            showCertify(0);
+            $(document).on('click', '#pagination #page-searchh a', function () {
+               let page = $(this).data('page');
+               if (page !== undefined) {
+                  showCertify(page);
+               }
+            });
+         });
+         //filter
+         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+               filterCertify();
+            });
+         });
+         function filterCertify(startPage) {
+            const solved = document.getElementById('solved').checked;
+            const unsolved = document.getElementById('unsolved').checked;
+            const option = document.getElementById('option').checked;
+            const java = document.getElementById('java').checked;
+            const csharp = document.getElementById('csharp').checked;
+            const python = document.getElementById('python').checked;
+            const cplus = document.getElementById('cplus').checked;
+            const userID = document.getElementById('userID').value;
+            $.ajax({
+               url:'/api/certify/filter',
+               type: 'GET',
+               data: {
+                  page: startPage,
+                  size: 8,
+                  option: option,
+                  java: java,
+                  csharp: csharp,
+                  python : python,
+                  cplus : cplus,
+                  solved: solved,
+                  unsolved: unsolved,
+                  userID: userID,
+               },
+               success: function (response){
+                  // alert(response.content);
+                  $('#assignment_kits').empty();
+                  if(response.content.length === 0) {
+                     notFoundResultCertify();
+                  }else {
+                     // add table rows
+                     $.each(response.content, (i, assignment_kit) => {
+                        certifyContent(assignment_kit)
+                     });
+                     // Update pagination
+                     $('#pagination').empty();
+                     buildPaginationForFilter(response)
+                  }
+               },
+               error: function (){
+                  console.log("error");
+               }
+            });
+         }
+         $(document).on('click', '#pagination #page-filter a', function () {
+            let page = $(this).data('page');
+            if (page !== undefined) {
+               filterCertify(page);
+            }
+         });
+      });
+   </script>
+</div>
+</body>
+</html>
